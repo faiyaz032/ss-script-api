@@ -30,7 +30,13 @@ app.get('/screenshot', async (req, res) => {
     return res.json('Url parameter is missing');
   }
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: [
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins',
+      '--disable-site-isolation-trials',
+    ],
+  });
   const page = await browser.newPage();
 
   await page.goto(url);
