@@ -6,10 +6,7 @@ const bodyParser = require('body-parser');
 
 app.use(
   cors({
-    origin: [
-      'http://127.0.0.1:5501',
-      'https://6453fcca78622b3089052779--celebrated-paprenjak-b024f4.netlify.app',
-    ],
+    origin: true,
   })
 );
 
