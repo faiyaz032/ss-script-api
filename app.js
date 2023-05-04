@@ -35,6 +35,7 @@ app.get('/screenshot', async (req, res) => {
       '--disable-web-security',
       '--disable-features=IsolateOrigins',
       '--disable-site-isolation-trials',
+      '--disable-features=BlockInsecurePrivateNetworkRequests',
     ],
   });
   const page = await browser.newPage();
