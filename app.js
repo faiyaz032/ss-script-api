@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 app.use(
   cors({
@@ -31,8 +32,15 @@ app.get('/screenshot', async (req, res) => {
   }
 
   const browser = await puppeteer.launch({
-    headless: false,
+    executablePath:
+      process.env.NODE_ENV === 'production'
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
     args: [
+      '--disable-setuid-sandbox',
+      '--no-sandbox',
+      '--single-process',
+      '--no-zygote',
       '--disable-web-security',
       '--disable-features=IsolateOrigins',
       '--disable-site-isolation-trials',
