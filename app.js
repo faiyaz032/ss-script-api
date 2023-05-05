@@ -31,6 +31,7 @@ app.get('/screenshot', async (req, res) => {
   }
 
   const browser = await puppeteer.launch({
+    headless: false,
     args: [
       '--disable-web-security',
       '--disable-features=IsolateOrigins',
